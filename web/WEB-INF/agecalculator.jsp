@@ -21,11 +21,20 @@
         <h1>Age Calculator</h1>
         
         
-        <form method="post" action="/age"> <!-posting data from form to age url->
-            <label>Enter Age </label><input type="number" id="userage"><br> 
-            <input type="submit" value="Age Next Birthday" min="1"> <!-on submit display user age + 1-> 
-            <!-add link to arithmatic calculator page-> 
+        <form method="post" action="age"> <!-posting data from form to age url->
+            <label>Enter Age </label><input type="text" name="age"><br>  
+                <br> 
+            <input type="submit" value="Age Next Birthday">  
+            <!-add link to arithmetic calculator page-> 
                   
+            
+             
         </form>
+        
+           <h2>${age}</h2>
+        
+        <a href="arithmeticcalculator.jsp">Arithmetic Calculator</a>
+        
+       
     </body>
 </html>
