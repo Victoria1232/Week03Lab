@@ -15,8 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 public class AgeCalculatorServlet extends HttpServlet {
 
    @Override
-   protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-           throws ServletException, IOException {
+   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        
        
        /* When browser first makes request ill use doGet */ 
@@ -33,30 +32,58 @@ public class AgeCalculatorServlet extends HttpServlet {
    }
    
     @Override
-   protected void doPost(HttpServletRequest request, HttpServletResponse response)
-           throws ServletException, IOException {
-       
+   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        
        // post request to recive the data from the jsp form 
        // if this is blank nothing will show up 
        
+       /*PARAMITERS*/
        // retrieve form paramiters from jsp 
+       String age = request.getParameter("age"); // gets user input for age and stores it in age var 
+      
+       int userAgeToInt = Integer.parseInt(age); 
+       String errorMessage;
+      
+       /* VALIDATION */ 
+       // if user leaves blank - error message = You must give current age 
+       // if user enters a name not num - error message = you must enter a number 
        
-       String age = request.getParameter("age");
+       if (age == null || age.equals("")) { // null must come first or may risk null pointer 
+           
+           errorMessage = "You must give current age "; 
+           request.setAttribute("age", errorMessage);
+           getServletContext().getRequestDispatcher("/WEB-INF/agecalculator.jsp").forward(request, response); 
+           return;
+       }
+       else if ( userAgeToInt < 1) {
+           
+            errorMessage = "You must give a valid current age "; 
+           request.setAttribute("age", errorMessage);
+           getServletContext().getRequestDispatcher("/WEB-INF/agecalculator.jsp").forward(request, response); 
+           return; 
+       }
        
-       age = toString(age); 
-  
+       
+       
+       age = addOneYear(age); 
        // display age variable to another jsp 
-      request.setAttribute("age", age); // store the variables of age into request object 
+      request.setAttribute("age", age); // store the data of age into request object 
        
        // forward to jsp 
-       getServletContext().getRequestDispatcher("/WEB-INF/agecalculator.jsp").forward(request, response); 
+       getServletContext().getRequestDispatcher("/WEB-INF/agecalculator.jsp").forward(request, response); // forwards go at the end after all datas been added
       
        
    }
    
   
-   public String toString(String userAge) {
+   /**
+    * 
+    * @param userAge String containing age of user 
+    * @return String statment and the users age plus one year 
+    * Description takes user age parses it to an integer then displays 
+    * Your age will be plus user age plus 1 
+    */
+   public String addOneYear(String userAge) {
        
        int addYear = Integer.parseInt(userAge); 
        addYear +=1; 
@@ -66,6 +93,7 @@ public class AgeCalculatorServlet extends HttpServlet {
       
    }
 
+  
    
 
 }
