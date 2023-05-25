@@ -17,13 +17,14 @@
    
         <title>Age Calculator</title>
     </head>
-    <body>
+    <body> 
         <h1>Age Calculator</h1>
         
         
-        <form method="post" action="/age">
-            <label>Enter Age</label><input type="number" id="age"><br>
-            <input type="submit" value="Age Next Birthday">
+        <form method="post" action="/age"> <!-posting data from form to age url->
+            <label>Enter Age </label><input type="number" id="userage"><br> 
+            <input type="submit" value="Age Next Birthday" min="1"> <!-on submit display user age + 1-> 
+            <!-add link to arithmatic calculator page-> 
                   
         </form>
     </body>
