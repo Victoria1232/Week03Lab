@@ -14,9 +14,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class ArithmeticCalculatorServlet extends HttpServlet {
 
+    
     @Override
-   protected void doGet(HttpServletRequest request, HttpServletResponse response) 
-           throws ServletException, IOException {
+   protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        
        
        /* When browser first makes request ill use doGet */ 
@@ -28,18 +28,28 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
        
        // your the one sending the http requests and response for the jsp page 
        
-   }
-   
-    @Override
-   protected void doPost(HttpServletRequest request, HttpServletResponse response)
-           throws ServletException, IOException {
-       
-       
-       
-      
+       // lets you display the jsp page 
        
    }
-   
     
-
+    
+    
+    
+    
+   
+     @Override
+   protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+       
+       
+      String firstNum = request.getParameter("first"); 
+       String secondNum = request.getParameter("first"); 
+       
+       
+        String add = request.getParameter("+"); 
+        String minus = request.getParameter("-"); 
+        String times = request.getParameter("*"); 
+        String divide = request.getParameter("%"); 
+   }
+   
+  
 }

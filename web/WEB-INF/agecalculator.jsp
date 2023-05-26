@@ -36,7 +36,7 @@
         </p>
           
         
-        <a href="arithmeticcalculator.jsp">Arithmetic Calculator</a>
+        <a href="./arithmetic" name="arithmeticLink">Arithmetic Calculator</a>
         
        
     </body>

@@ -15,12 +15,18 @@
         <h1>Arithmetic Calculator</h1>
         
         <form method="post" action="arithmetic">
-            <label>First: </label><input type="text" name="first" ><br>  
+            <label>First:  </label><input type="text" name="first" ><br>  
             <label>Second: </label><input type="text" name="second" ><br>  
-         <input type="button" value="+" ><br>  
+            <br>
+         <input type="button" value="+" >
          <input type="button" value="-" >
          <input type="button" value="*" > 
          <input type="button" value="%" > 
         </form>
+        
+        <P>Results: </P>
+        
+        
+         <a href="./age" name="ageLink">Age Calculator</a>
     </body>
 </html>

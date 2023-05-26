@@ -29,6 +29,7 @@ public class AgeCalculatorServlet extends HttpServlet {
        
        // lets you display the jsp page 
        
+       
    }
    
     @Override
@@ -40,6 +41,7 @@ public class AgeCalculatorServlet extends HttpServlet {
        /*PARAMITERS*/
        // retrieve form paramiters from jsp 
        String age = request.getParameter("age"); // gets user input for age and stores it in age var 
+       
       
        int userAgeToInt = Integer.parseInt(age); 
        String errorMessage;
@@ -55,7 +57,7 @@ public class AgeCalculatorServlet extends HttpServlet {
            getServletContext().getRequestDispatcher("/WEB-INF/agecalculator.jsp").forward(request, response); 
            return;
        }
-       else if ( userAgeToInt < 1) {
+       else if ( userAgeToInt < 1 ) {
            
             errorMessage = "You must give a valid current age "; 
            request.setAttribute("age", errorMessage);
@@ -65,10 +67,9 @@ public class AgeCalculatorServlet extends HttpServlet {
        
        
        
-       age = addOneYear(age); 
-       // display age variable to another jsp 
-      request.setAttribute("age", age); // store the data of age into request object 
        
+       age = addOneYear(age); 
+      
        // forward to jsp 
        getServletContext().getRequestDispatcher("/WEB-INF/agecalculator.jsp").forward(request, response); // forwards go at the end after all datas been added
       
