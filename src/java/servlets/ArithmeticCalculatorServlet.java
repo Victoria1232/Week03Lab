@@ -19,16 +19,8 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        
        
-       /* When browser first makes request ill use doGet */ 
-       
        getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp").forward(request, response); // use / before WEB
-       // getServletContext is a method inherited by HttpServlet
-       // getRequestDispasher lets you put in the file path for your jsp 
-       // forward - forwards the request and response objects to your jsp 
-       
-       // your the one sending the http requests and response for the jsp page 
-       
-       // lets you display the jsp page 
+      
        
    }
     
@@ -40,16 +32,74 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
      @Override
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        
+      
+       /*PARAMITERS*/ 
        
-      String firstNum = request.getParameter("first"); 
-       String secondNum = request.getParameter("first"); 
-       
-       
+        int first = Integer.parseInt(request.getParameter("first")); 
+        int second= Integer.parseInt(request.getParameter("second")); 
+        
+        String first1 = request.getParameter("first"); 
+        String second1 = request.getParameter("second"); 
+        
         String add = request.getParameter("+"); 
         String minus = request.getParameter("-"); 
         String times = request.getParameter("*"); 
         String divide = request.getParameter("%"); 
+       
+        request.setAttribute("first", first);
+        request.setAttribute("second", second);
+        
+        String errorMessage; 
+        int result;
+       
+   
+       /* VALIDATION */ 
+       
+       if (first1 == null || first1.equals("") || second1 == null || second1.equals(""))  {
+      
+           getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp").forward(request, response);
+           return; 
+       }
+      
+       
+       
+       /* LOGIC */ 
+       if (add.equals("+")) {
+           
+           request.setAttribute("symbol", "+");
+           result = first += second;
+           request.setAttribute("result", result);
+     
+       } 
+       else if (minus.equals("-")) {
+   
+             request.setAttribute("symbol", "-");
+             result = first -= second;
+             request.setAttribute("result", result);
+    
+       }
+       else if (times.equals("*")) {
+           
+             request.setAttribute("symbol", "*");
+             result = first *= second;
+             request.setAttribute("result", result);
+       }
+       else if (divide.equals("%")) {
+    
+             request.setAttribute("symbol", "%");
+             result = first /= second;
+             request.setAttribute("result", result);
+    
+       }
+       
+        getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp").forward(request, response);
+     
+     
+     
    }
+   
+   
+   
    
   
 }

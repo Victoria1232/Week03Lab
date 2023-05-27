@@ -55,20 +55,22 @@ public class AgeCalculatorServlet extends HttpServlet {
            errorMessage = "You must give current age "; 
            request.setAttribute("age", errorMessage);
            getServletContext().getRequestDispatcher("/WEB-INF/agecalculator.jsp").forward(request, response); 
-           return;
+          return;
        }
        else if ( userAgeToInt < 1 ) {
            
             errorMessage = "You must give a valid current age "; 
            request.setAttribute("age", errorMessage);
            getServletContext().getRequestDispatcher("/WEB-INF/agecalculator.jsp").forward(request, response); 
-           return; 
+           return;
+           
        }
        
        
+       userAgeToInt+=1; 
        
-       
-       age = addOneYear(age); 
+       age =   "Your age will be " + userAgeToInt + "!"; 
+       request.setAttribute("age", age);
       
        // forward to jsp 
        getServletContext().getRequestDispatcher("/WEB-INF/agecalculator.jsp").forward(request, response); // forwards go at the end after all datas been added
@@ -77,22 +79,7 @@ public class AgeCalculatorServlet extends HttpServlet {
    }
    
   
-   /**
-    * 
-    * @param userAge String containing age of user 
-    * @return String statment and the users age plus one year 
-    * Description takes user age parses it to an integer then displays 
-    * Your age will be plus user age plus 1 
-    */
-   public String addOneYear(String userAge) {
-       
-       int addYear = Integer.parseInt(userAge); 
-       addYear +=1; 
-       
-       return "Your age will be " + addYear + "!"; 
-       
-      
-   }
+  
 
   
    
