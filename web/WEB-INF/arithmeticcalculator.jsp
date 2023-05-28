@@ -18,10 +18,10 @@
             <label>First:  </label><input type="text" name="first" value="${first}"><br>  
             <label>Second: </label><input type="text" name="second" value="${second}" ><br>  
             <br>
-         <input type="submit" value="+" name="+" >
-         <input type="submit" value="-" name="-" >
-         <input type="submit" value="*" name="*"> 
-         <input type="submit" value="%" name="%"> 
+          <input type="submit" value="+" name="+" >
+          <input type="submit" value="-" name="-" >
+          <input type="submit" value="*" name="*"> 
+          <input type="submit" value="%" name="%"> 
         </form>
         
         <P>You entered: ${first} ${symbol} ${second}</P>

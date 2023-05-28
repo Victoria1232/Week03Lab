@@ -24,11 +24,7 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
        
    }
     
-    
-    
-    
-    
-   
+  
      @Override
    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
        
@@ -41,10 +37,12 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
         String first1 = request.getParameter("first"); 
         String second1 = request.getParameter("second"); 
         
+      
         String add = request.getParameter("+"); 
         String minus = request.getParameter("-"); 
         String times = request.getParameter("*"); 
         String divide = request.getParameter("%"); 
+        
        
         request.setAttribute("first", first);
         request.setAttribute("second", second);
@@ -55,43 +53,53 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
    
        /* VALIDATION */ 
        
-       if (first1 == null || first1.equals("") || second1 == null || second1.equals(""))  {
-      
-           getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp").forward(request, response);
-           return; 
-       }
-      
+       if (first1 != null ||  second1 != null )  {
+           
+           /* LOGIC */ 
        
-       
-       /* LOGIC */ 
-       if (add.equals("+")) {
+        // only the first if statment gets executed if we go add.equals("+");
+        // since the rest of the submit buttons are null they dont get executed then we ger 500 error 
+   
+       if (add != null) {
            
            request.setAttribute("symbol", "+");
            result = first += second;
            request.setAttribute("result", result);
-     
-       } 
-       else if (minus.equals("-")) {
+           
+       } else if (minus != null) {
    
              request.setAttribute("symbol", "-");
              result = first -= second;
              request.setAttribute("result", result);
-    
-       }
-       else if (times.equals("*")) {
+             
+       } else if (times != null) {
            
              request.setAttribute("symbol", "*");
              result = first *= second;
              request.setAttribute("result", result);
-       }
-       else if (divide.equals("%")) {
+             
+       } else if (divide != null) {
     
              request.setAttribute("symbol", "%");
              result = first /= second;
              request.setAttribute("result", result);
-    
        }
+
+      
+           
+       } else {
+            errorMessage = "enter a number"; 
+            request.setAttribute("result", errorMessage);
+           getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp").forward(request, response);
+           return; 
+       }
+     
        
+       
+       
+        
+      
+        
         getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp").forward(request, response);
      
      
