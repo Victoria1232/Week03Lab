@@ -37,6 +37,7 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
         String first1 = request.getParameter("first"); 
         String second1 = request.getParameter("second"); 
         
+       
       
         String add = request.getParameter("+"); 
         String minus = request.getParameter("-"); 
@@ -52,8 +53,8 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
        
    
        /* VALIDATION */ 
-       
-       if (first1 != null ||  second1 != null )  {
+      
+       if (first1 != null ||  !first1.equals("") || second1 != null ||  !second1.equals("") )  {
            
            /* LOGIC */ 
        
@@ -88,6 +89,7 @@ public class ArithmeticCalculatorServlet extends HttpServlet {
       
            
        } else {
+                  
             errorMessage = "enter a number"; 
             request.setAttribute("result", errorMessage);
            getServletContext().getRequestDispatcher("/WEB-INF/arithmeticcalculator.jsp").forward(request, response);

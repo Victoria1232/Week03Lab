@@ -22,7 +22,7 @@
         
         
         <form method="post" action="age"> <!-posting data from form to age url->
-            <label>Enter Age </label><input type="text" name="age"><br>  
+            <label>Enter Age </label><input type="text" name="age" required><br>  
                 <br> 
             <input type="submit" value="Age Next Birthday">  
             <!-add link to arithmetic calculator page-> 
@@ -32,7 +32,7 @@
         </form>
         
         <p>
-            ${age}
+            ${result}
         </p>
           
         

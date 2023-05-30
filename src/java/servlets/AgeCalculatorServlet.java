@@ -41,41 +41,44 @@ public class AgeCalculatorServlet extends HttpServlet {
        /*PARAMITERS*/
        // retrieve form paramiters from jsp 
        String age = request.getParameter("age"); // gets user input for age and stores it in age var 
-       
-      
-       int userAgeToInt = Integer.parseInt(age); 
-       String errorMessage;
+    
+       //int userAgeToInt = Integer.parseInt(age); 
+       int userAgeToInt = Integer.parseInt(request.getParameter("age"));
+     
+       String result; 
       
        /* VALIDATION */ 
        // if user leaves blank - error message = You must give current age 
        // if user enters a name not num - error message = you must enter a number 
        
-       if (age == null || age.equals("")) { // null must come first or may risk null pointer 
+ 
+      
+        if (age == null || age.equals("")) { // 500 error - For input string: ""
            
-           errorMessage = "You must give current age "; 
-           request.setAttribute("age", errorMessage);
-           getServletContext().getRequestDispatcher("/WEB-INF/agecalculator.jsp").forward(request, response); 
-          return;
+            result = "You must give current age "; 
+            request.setAttribute("result", result);
+            getServletContext().getRequestDispatcher("/WEB-INF/agecalculator.jsp").forward(request, response); 
+            return;
        }
-       else if ( userAgeToInt < 1 ) {
+        else if (userAgeToInt < 0) {
            
-            errorMessage = "You must give a valid current age "; 
-           request.setAttribute("age", errorMessage);
+            result = "You must give a valid number "; 
+           request.setAttribute("result", result);
            getServletContext().getRequestDispatcher("/WEB-INF/agecalculator.jsp").forward(request, response); 
            return;
-           
        }
        
-       
-       userAgeToInt+=1; 
-       
-       age =   "Your age will be " + userAgeToInt + "!"; 
-       request.setAttribute("age", age);
       
-       // forward to jsp 
-       getServletContext().getRequestDispatcher("/WEB-INF/agecalculator.jsp").forward(request, response); // forwards go at the end after all datas been added
+        
+             userAgeToInt+=1; 
+             result = "Your age will be " + userAgeToInt + "!"; 
+             request.setAttribute("result", result);
+            
+            
+           // forward to jsp 
+            getServletContext().getRequestDispatcher("/WEB-INF/agecalculator.jsp").forward(request, response); // forwards go at the end after all datas been added
       
-       
+        
    }
    
   
