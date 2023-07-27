@@ -1,7 +1,7 @@
 <%-- 
     Document   : arithmeticcalculator
     Created on : May 25, 2023, 12:59:42 PM
-    Author     : mfgperez
+    Author     : Victo
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
